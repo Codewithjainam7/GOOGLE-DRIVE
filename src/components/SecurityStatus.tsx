@@ -18,7 +18,7 @@ export default function SecurityStatus() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="rounded-xl border border-border bg-card p-6"
+      className="glass-card rounded-2xl p-6"
     >
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-2.5">
@@ -43,7 +43,7 @@ export default function SecurityStatus() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05, duration: 0.3 }}
-              className="flex items-start gap-3 p-3.5 rounded-lg bg-white/[0.02] border border-border"
+              className="flex items-start gap-3 p-3.5 rounded-lg bg-white/[0.02] border border-white/[0.08]"
             >
               <div className="w-7 h-7 rounded-lg bg-success-muted flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Icon className="w-3.5 h-3.5 text-success" />

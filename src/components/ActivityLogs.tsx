@@ -37,10 +37,10 @@ export default function ActivityLogs({ logs }: ActivityLogsProps) {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="rounded-xl border border-border bg-card overflow-hidden"
+      className="glass-card rounded-2xl overflow-hidden"
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-3.5 border-b border-border">
+      <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.08]">
         <div className="flex items-center gap-2.5">
           <Terminal className="w-4 h-4 text-text-muted" />
           <div>
