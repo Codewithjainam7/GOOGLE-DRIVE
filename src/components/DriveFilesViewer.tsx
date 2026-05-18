@@ -6,7 +6,7 @@ import {
   Search, FileText, Folder, Image as ImageIcon, Film, Table2,
   Presentation, FileArchive, MoreHorizontal, Grid3X3, List,
   ChevronLeft, ChevronRight, ExternalLink, UploadCloud, Info, X,
-  Download, Share2, FileCode, CheckCircle2
+  Download, Share2, FileCode, CheckCircle2, RefreshCw
 } from "lucide-react";
 
 interface DriveFile {
@@ -23,6 +23,7 @@ interface DriveFile {
 
 interface DriveFilesViewerProps {
   isConnected: boolean;
+  refreshTrigger?: number;
 }
 
 const mimeTypeMap: Record<string, { icon: React.ElementType; label: string; color: string; bg: string }> = {
@@ -63,7 +64,7 @@ function formatSize(bytes?: string) {
   return `${(b / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export default function DriveFilesViewer({ isConnected }: DriveFilesViewerProps) {
+export default function DriveFilesViewer({ isConnected, refreshTrigger }: DriveFilesViewerProps) {
   const [files, setFiles] = useState<DriveFile[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -101,7 +102,7 @@ export default function DriveFilesViewer({ isConnected }: DriveFilesViewerProps)
 
   useEffect(() => {
     if (isConnected) fetchFiles();
-  }, [isConnected, fetchFiles]);
+  }, [isConnected, fetchFiles, refreshTrigger]);
 
   const handleSearch = (value: string) => {
     setSearchQuery(value);
@@ -259,6 +260,16 @@ export default function DriveFilesViewer({ isConnected }: DriveFilesViewerProps)
                   <Grid3X3 className="w-4 h-4" />
                 </button>
               </div>
+
+              {/* Live Sync Refresh button */}
+              <button
+                onClick={() => fetchFiles(searchQuery)}
+                disabled={loading}
+                className="p-2 rounded-xl border border-white/[0.08] bg-white/[0.02] text-text-muted hover:text-white transition-colors cursor-pointer select-none disabled:opacity-50"
+                title="Refresh Cloud Drive"
+              >
+                <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin text-blue-400" : ""}`} />
+              </button>
 
               {/* Upload Trigger button */}
               <label className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12px] font-bold text-white bg-blue-500 hover:bg-blue-400 transition-colors shadow-lg shadow-blue-500/10 cursor-pointer select-none">

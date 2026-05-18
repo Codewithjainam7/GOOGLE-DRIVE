@@ -7,6 +7,7 @@ interface DriveConnectionHeroProps {
   status: "disconnected" | "connecting" | "connected" | "error";
   onConnect: () => void;
   onDisconnect: () => void;
+  onRefresh?: () => void;
   errorMessage?: string;
 }
 
@@ -23,7 +24,7 @@ function GoogleDriveLogo() {
   );
 }
 
-export default function DriveConnectionHero({ status, onConnect, onDisconnect, errorMessage }: DriveConnectionHeroProps) {
+export default function DriveConnectionHero({ status, onConnect, onDisconnect, onRefresh, errorMessage }: DriveConnectionHeroProps) {
   const isConnected = status === "connected";
   const isConnecting = status === "connecting";
   const isError = status === "error";
@@ -77,6 +78,7 @@ export default function DriveConnectionHero({ status, onConnect, onDisconnect, e
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={onRefresh}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold text-text-secondary bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all cursor-pointer select-none"
               >
                 <RefreshCw className="w-4 h-4" />

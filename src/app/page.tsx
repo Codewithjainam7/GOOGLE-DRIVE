@@ -37,10 +37,16 @@ export default function Home() {
   const [showOAuthFlow, setShowOAuthFlow] = useState(false);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   const addLog = useCallback((message: string, type: LogEntry["type"] = "info") => {
     setLogs((prev) => [...prev, { timestamp: timestamp(), message, type }]);
   }, []);
+
+  const handleRefresh = useCallback(() => {
+    setRefreshTrigger((prev) => prev + 1);
+    addLog("Polling Google Drive API for updates...", "system");
+  }, [addLog]);
 
   // Check connection on mount and after redirect
   const checkConnection = useCallback(async () => {
@@ -215,12 +221,13 @@ export default function Home() {
                 status={connectionStatus}
                 onConnect={handleConnect}
                 onDisconnect={handleDisconnect}
+                onRefresh={handleRefresh}
                 errorMessage={errorMessage}
               />
 
               <OAuthFlowTracker currentStep={oauthStep} visible={showOAuthFlow} />
               <ConnectedAccount profile={isConnected ? profile : null} onDisconnect={handleDisconnect} />
-              <DriveFilesViewer isConnected={isConnected} />
+              <DriveFilesViewer isConnected={isConnected} refreshTrigger={refreshTrigger} />
             </motion.div>
           )}
 
@@ -240,7 +247,7 @@ export default function Home() {
                 </h1>
                 <p className="text-[12px] sm:text-[13px] text-text-muted font-bold mt-0.5">Explore, search, and manage your cloud drive storage securely.</p>
               </div>
-              <DriveFilesViewer isConnected={isConnected} />
+              <DriveFilesViewer isConnected={isConnected} refreshTrigger={refreshTrigger} />
             </motion.div>
           )}
 
