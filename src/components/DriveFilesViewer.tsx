@@ -417,7 +417,7 @@ export default function DriveFilesViewer({ isConnected, refreshTrigger }: DriveF
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="p-1.5 rounded-lg hover:bg-white/[0.06] text-text-muted hover:text-blue-400 transition-all opacity-0 group-hover:opacity-100"
+                              className="p-1.5 rounded-lg hover:bg-white/[0.06] text-text-muted hover:text-blue-400 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
                             >
                               <ExternalLink className="w-3.5 h-3.5" />
                             </a>

@@ -72,14 +72,14 @@ export default function DriveConnectionHero({ status, onConnect, onDisconnect, o
         </div>
 
         {/* Right Action Section */}
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full sm:w-auto flex-shrink-0">
           {isConnected ? (
             <>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onRefresh}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold text-text-secondary bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all cursor-pointer select-none"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold text-text-secondary bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all cursor-pointer select-none w-full sm:w-auto"
               >
                 <RefreshCw className="w-4 h-4" />
                 Refresh Sync
@@ -88,7 +88,7 @@ export default function DriveConnectionHero({ status, onConnect, onDisconnect, o
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onDisconnect}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold text-red-400 bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 transition-all cursor-pointer select-none"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold text-red-400 bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 transition-all cursor-pointer select-none w-full sm:w-auto"
               >
                 <Unlink className="w-4 h-4" />
                 Disconnect
@@ -100,7 +100,7 @@ export default function DriveConnectionHero({ status, onConnect, onDisconnect, o
               whileTap={{ scale: 0.98 }}
               onClick={onConnect}
               disabled={isConnecting}
-              className="flex items-center gap-2 px-5 py-3 rounded-xl text-[13px] font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-lg shadow-blue-500/20 border border-blue-400/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer select-none"
+              className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-[13px] font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-lg shadow-blue-500/20 border border-blue-400/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer select-none w-full sm:w-auto"
             >
               {isConnecting ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
