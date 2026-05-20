@@ -16,6 +16,10 @@ export interface SessionPayload {
   picture?: string;
   connected_at?: string;
   scopes?: string[];
+  // Folder-level access restriction
+  folder_id?: string;
+  folder_name?: string;
+  folder_link?: string;
 }
 
 export async function createSession(payload: SessionPayload) {
@@ -46,6 +50,15 @@ export async function getSession(): Promise<SessionPayload | null> {
   } catch {
     return null;
   }
+}
+
+export async function updateSession(updates: Partial<SessionPayload>) {
+  const session = await getSession();
+  if (!session) return null;
+
+  const updated = { ...session, ...updates };
+  await createSession(updated);
+  return updated;
 }
 
 export async function deleteSession() {

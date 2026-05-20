@@ -18,6 +18,10 @@ export async function GET() {
       token_masked: maskToken(session.access_token),
       refresh_token_present: !!session.refresh_token,
       expiry_date: session.expiry_date,
+      // Folder lock status
+      folder_id: session.folder_id || null,
+      folder_name: session.folder_name || null,
+      folder_link: session.folder_link || null,
     });
   } catch (error) {
     console.error("Profile error:", error);
