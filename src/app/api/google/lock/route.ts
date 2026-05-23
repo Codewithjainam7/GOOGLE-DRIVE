@@ -69,8 +69,14 @@ export async function POST(request: NextRequest) {
       const code = (driveError as { code?: number })?.code;
       if (code === 404) {
         return NextResponse.json(
-          { error: "Folder not found. Please check the link and ensure you have access." },
+          { error: "This folder was not found in your connected Google account. Make sure the folder belongs to the account you signed in with, or that it has been shared with you." },
           { status: 404 }
+        );
+      }
+      if (code === 403) {
+        return NextResponse.json(
+          { error: "You don't have permission to access this folder. It may belong to a different Google account. Please check that you're signed in with the correct account." },
+          { status: 403 }
         );
       }
       throw driveError;

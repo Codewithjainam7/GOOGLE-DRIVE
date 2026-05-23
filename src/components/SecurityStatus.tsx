@@ -14,29 +14,29 @@ const features = [
 
 export default function SecurityStatus() {
   return (
-    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="glass-card rounded-2xl p-5 sm:p-6">
-      <div className="flex items-center justify-between mb-5">
+    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} className="glass-card rounded-2xl p-5 sm:p-7">
+      <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2.5">
-          <Shield className="w-4 h-4 text-text-muted" />
+          <Shield className="w-4 h-4 text-[#7a8ba3]" />
           <div>
-            <h3 className="text-[13px] sm:text-[14px] font-extrabold text-text-primary">Security & Access Control</h3>
-            <p className="text-[11px] text-text-muted mt-0.5">Architecture security overview</p>
+            <h3 className="text-[13px] sm:text-[14px] font-extrabold text-white">Security & Access Control</h3>
+            <p className="text-[11px] text-[#7a8ba3] mt-0.5">Architecture security overview</p>
           </div>
         </div>
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-success-muted text-success border border-success/20">
-          <CheckCircle2 className="w-2.5 h-2.5" />All Secure
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-[10px] font-bold bg-[#00d68f]/8 text-[#00d68f] border border-[#00d68f]/20 shadow-[0_0_8px_rgba(0,214,143,0.15)]">
+          <CheckCircle2 className="w-3.5 h-3.5" />All Secure
         </span>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {features.map((f, i) => {
           const Icon = f.icon;
           return (
-            <motion.div key={f.label} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05, duration: 0.3 }}
-              className="flex items-start gap-3 p-3 rounded-xl glass-surface">
-              <div className="w-7 h-7 rounded-lg bg-success-muted flex items-center justify-center flex-shrink-0 mt-0.5"><Icon className="w-3.5 h-3.5 text-success" /></div>
+            <motion.div key={f.label} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-start gap-3.5 p-3.5 rounded-xl glass-surface border border-white/[0.03]">
+              <div className="w-8 h-8 rounded-xl bg-[#00d68f]/8 border border-[#00d68f]/15 flex items-center justify-center flex-shrink-0 mt-0.5"><Icon className="w-4 h-4 text-[#00d68f]" /></div>
               <div>
-                <div className="flex items-center gap-1.5"><h4 className="text-[11px] font-semibold text-text-primary">{f.label}</h4><div className="w-1 h-1 rounded-full bg-success" /></div>
-                <p className="text-[10px] text-text-muted mt-0.5 leading-relaxed">{f.description}</p>
+                <div className="flex items-center gap-1.5"><h4 className="text-[11px] font-semibold text-white">{f.label}</h4><div className="w-1 h-1 rounded-full bg-[#00d68f] shadow-[0_0_4px_#00d68f]" /></div>
+                <p className="text-[10px] text-[#7a8ba3] mt-1 leading-relaxed">{f.description}</p>
               </div>
             </motion.div>
           );

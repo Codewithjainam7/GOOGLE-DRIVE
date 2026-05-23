@@ -8,9 +8,11 @@ export function createOAuth2Client() {
   );
 }
 
-// SECURITY: Strictly read-only access — no write/edit/delete capabilities
+// Access scopes: read-only Drive + Sheets write (for invoice report export)
 export const SCOPES = [
   "https://www.googleapis.com/auth/drive.readonly",
+  "https://www.googleapis.com/auth/drive.file",
+  "https://www.googleapis.com/auth/spreadsheets",
   "https://www.googleapis.com/auth/userinfo.email",
   "https://www.googleapis.com/auth/userinfo.profile",
 ];
